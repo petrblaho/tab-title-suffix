@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>Tab Title Prefix デモ</title>
+<title>Tab Title Suffix デモ</title>
 <style>
   html, body { margin: 0; padding: 0; }
   body { background: #eef2f7; }
@@ -28,7 +28,7 @@
   .tab.blue { border-bottom-color: #2f6fb0; }
   .tab.orange { border-bottom-color: #c2740f; }
   .tab.green { border-bottom-color: #4d8a4a; }
-  .prefix { color: #2f6fb0; font-weight: 900; }
+  .suffix { color: #2f6fb0; font-weight: 900; }
   .arrow { color: #2f6fb0; font-size: 30px; font-weight: 900; text-align: center; margin: -14px 0 8px; }
   .rules { display: grid; gap: 12px; }
   .rule { background: #fff; border: 2px solid #d7dee8; border-radius: 12px; padding: 14px 16px; }
@@ -53,21 +53,21 @@
       <div class="arrow">↓</div>
       <div class="section-title">After</div>
       <div class="tabbar">
-        <div class="tab blue"><span class="prefix">[個人]</span> Dashboard</div>
-        <div class="tab orange"><span class="prefix">[仕事]</span> Dashboard</div>
-        <div class="tab green"><span class="prefix">[検証]</span> Dashboard</div>
+        <div class="tab blue">Dashboard<span class="suffix">[個人]</span></div>
+        <div class="tab orange">Dashboard<span class="suffix">[仕事]</span></div>
+        <div class="tab green">Dashboard<span class="suffix">[検証]</span></div>
       </div>
     </div>
     <div class="panel">
       <div class="section-title">v0.2.0 の URL ルール</div>
       <div class="rules">
         <div class="rule"><span class="muted">URL パターン</span><br><strong>https://app.example.com/*</strong></div>
-        <div class="rule"><span class="muted">プレフィックス</span><br><strong>[APP]</strong></div>
-        <div class="preview">[仕事] [APP] Dashboard</div>
+        <div class="rule"><span class="muted">サフィックス</span><br><strong>[APP]</strong></div>
+        <div class="preview">Dashboard[仕事] [APP]</div>
       </div>
     </div>
   </div>
-  <div class="footer">コンテナ名や URL ルールのプレフィックスを、タブタイトルの先頭に表示します</div>
+  <div class="footer">コンテナ名や URL ルールのサフィックスを、タブタイトルの末尾に表示します</div>
 </div>
 </body>
 </html>

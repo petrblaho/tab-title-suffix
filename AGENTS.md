@@ -1,4 +1,4 @@
-# Agent Entry Point (Tab Title Prefix)
+# Agent Entry Point (Tab Title Suffix)
 
 このリポジトリの運用ガイダンスは `CLAUDE.md` を正本とする。
 

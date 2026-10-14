@@ -1,24 +1,24 @@
 {
   "extensionName": {
-    "message": "Tab Title Prefix"
+    "message": "Tab Title Suffix"
   },
   "extensionDescription": {
-    "message": "Firefox のコンテナ名や自分で決めた URL ルールで、タブタイトルの先頭にプレフィックスを付けて見分けやすくします。"
+    "message": "Firefox のコンテナ名や自分で決めた URL ルールで、タブタイトルの末尾にサフィックスを付けて見分けやすくします。"
   },
   "optionsTitle": {
-    "message": "Tab Title Prefix — 設定"
+    "message": "Tab Title Suffix — 設定"
   },
   "optionsGlobalEnabledLabel": {
-    "message": "タブタイトルのプレフィックスを有効化"
+    "message": "タブタイトルのサフィックスを有効化"
   },
   "optionsContainerSectionTitle": {
-    "message": "Firefox コンテナプレフィックス"
+    "message": "Firefox コンテナサフィックス"
   },
   "optionsContainerEnabledLabel": {
-    "message": "コンテナプレフィックスを有効化"
+    "message": "コンテナサフィックスを有効化"
   },
   "optionsContainerTemplateLabel": {
-    "message": "コンテナプレフィックスのテンプレート"
+    "message": "コンテナサフィックスのテンプレート"
   },
   "optionsContainerTemplateHint": {
     "message": "{container} はコンテナ名に置き換わるプレースホルダーです。"
@@ -39,7 +39,7 @@
     "message": "URL パターン"
   },
   "optionsNewRuleTemplateLabel": {
-    "message": "プレフィックステンプレート"
+    "message": "サフィックステンプレート"
   },
   "optionsRuleMatchPlaceholder": {
     "message": "https://github.com/*"
@@ -66,7 +66,7 @@
     "message": "URL パターン"
   },
   "optionsRuleTemplateLabel": {
-    "message": "プレフィックステンプレート"
+    "message": "サフィックステンプレート"
   },
   "optionsRuleUpButton": {
     "message": "上へ"
@@ -84,10 +84,10 @@
     "message": "保存しました。"
   },
   "optionsValidationError": {
-    "message": "有効な URL パターンとプレフィックステンプレートを入力してください。"
+    "message": "有効な URL パターンとサフィックステンプレートを入力してください。"
   },
   "optionsTemplateRequiredError": {
-    "message": "プレフィックステンプレートを入力してください。"
+    "message": "サフィックステンプレートを入力してください。"
   },
   "optionsMatchPatternError_empty": {
     "message": "URL パターンを入力してください。"

@@ -1,24 +1,24 @@
 {
   "extensionName": {
-    "message": "Tab Title Prefix"
+    "message": "Tab Title Suffix"
   },
   "extensionDescription": {
-    "message": "Prefix tab titles with Firefox container names or your own URL rules, so similar tabs are easy to tell apart."
+    "message": "Suffix tab titles with Firefox container names or your own URL rules, so similar tabs are easy to tell apart."
   },
   "optionsTitle": {
-    "message": "Tab Title Prefix — Settings"
+    "message": "Tab Title Suffix — Settings"
   },
   "optionsGlobalEnabledLabel": {
-    "message": "Enable tab title prefixes"
+    "message": "Enable tab title suffixes"
   },
   "optionsContainerSectionTitle": {
-    "message": "Firefox container prefix"
+    "message": "Firefox container suffix"
   },
   "optionsContainerEnabledLabel": {
-    "message": "Enable container prefix"
+    "message": "Enable container suffix"
   },
   "optionsContainerTemplateLabel": {
-    "message": "Container prefix template"
+    "message": "Container suffix template"
   },
   "optionsContainerTemplateHint": {
     "message": "Use {container} as a placeholder for the container name."
@@ -39,7 +39,7 @@
     "message": "URL pattern"
   },
   "optionsNewRuleTemplateLabel": {
-    "message": "Prefix template"
+    "message": "Suffix template"
   },
   "optionsRuleMatchPlaceholder": {
     "message": "https://github.com/*"
@@ -66,7 +66,7 @@
     "message": "URL pattern"
   },
   "optionsRuleTemplateLabel": {
-    "message": "Prefix template"
+    "message": "Suffix template"
   },
   "optionsRuleUpButton": {
     "message": "Up"
@@ -84,10 +84,10 @@
     "message": "Saved."
   },
   "optionsValidationError": {
-    "message": "Enter a valid URL pattern and prefix template."
+    "message": "Enter a valid URL pattern and suffix template."
   },
   "optionsTemplateRequiredError": {
-    "message": "Enter a prefix template."
+    "message": "Enter a suffix template."
   },
   "optionsMatchPatternError_empty": {
     "message": "Enter a URL pattern."

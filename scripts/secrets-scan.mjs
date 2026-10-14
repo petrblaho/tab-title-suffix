@@ -43,7 +43,7 @@ const MAX_FILE_SIZE = 1024 * 1024;
 // 非公開アドレスそのものは絶対にここへ書かない（allowlist 方式なら書かずに防げる）。
 const ALLOWED_EMAILS = [
   'ishizakahiroshi.dev@gmail.com',      // 公開コミット名義・package manifest 用
-  'tab-title-prefix@ishizakahiroshi.dev', // Firefox 拡張の gecko ID（メールではなく AMO 公開識別子）
+  'tab-title-suffix@blaho.info', // ローカル Firefox 拡張の gecko ID（メールではない識別子）
 ];
 const ALLOWED_EMAIL_DOMAINS = [
   'users.noreply.github.com',  // GitHub の noreply

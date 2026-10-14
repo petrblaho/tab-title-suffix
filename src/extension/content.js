@@ -1,9 +1,9 @@
 (function () {
   let settings = null;
   let containerName = null;
-  let prefix = "";
+  let suffix = "";
   let lastUrl = location.href;
-  const knownPrefixes = new Set();
+  const knownSuffixes = new Set();
 
   function getApi() {
     if (typeof browser !== "undefined") return browser;
@@ -33,7 +33,7 @@
       .replaceAll("{name}", context.container || "");
   }
 
-  function computePrefix(currentSettings, currentContainerName) {
+  function computeSuffix(currentSettings, currentContainerName) {
     if (!currentSettings || !currentSettings.enabled) return "";
     const context = {
       container: currentContainerName || "",
@@ -54,38 +54,38 @@
     return parts.join("");
   }
 
-  function stripKnownPrefix(title) {
-    // Longest match first so a short prefix cannot leave a longer composite prefix half-stripped
-    // (e.g. known "[A] " and "[A] [B] " must not strip only "[A] " from "[A] [B] Page").
+  function stripKnownSuffix(title) {
+    // Longest match first so a short suffix cannot leave a longer composite suffix half-stripped
+    // (e.g. known " [A]" and " [A] [B]" must not strip only " [A]" from "Page [A] [B]").
     let best = "";
-    for (const knownPrefix of knownPrefixes) {
-      if (knownPrefix && knownPrefix.length > best.length && title.startsWith(knownPrefix)) {
-        best = knownPrefix;
+    for (const knownSuffix of knownSuffixes) {
+      if (knownSuffix && knownSuffix.length > best.length && title.endsWith(knownSuffix)) {
+        best = knownSuffix;
       }
     }
-    return best ? title.slice(best.length) : title;
+    return best ? title.slice(0, -best.length) : title;
   }
 
-  function applyPrefix() {
-    const baseTitle = stripKnownPrefix(document.title);
-    const nextTitle = prefix ? prefix + baseTitle : baseTitle;
+  function applySuffix() {
+    const baseTitle = stripKnownSuffix(document.title);
+    const nextTitle = suffix ? baseTitle + suffix : baseTitle;
     if (document.title !== nextTitle) {
       document.title = nextTitle;
     }
   }
 
-  function refreshPrefix() {
-    prefix = computePrefix(settings, containerName);
-    if (prefix) {
-      knownPrefixes.add(prefix);
+  function refreshSuffix() {
+    suffix = computeSuffix(settings, containerName);
+    if (suffix) {
+      knownSuffixes.add(suffix);
     }
-    applyPrefix();
+    applySuffix();
   }
 
   function refreshIfUrlChanged() {
     if (location.href === lastUrl) return;
     lastUrl = location.href;
-    refreshPrefix();
+    refreshSuffix();
   }
 
   function watchNavigationChanges() {
@@ -99,7 +99,7 @@
 
   function watchTitleChanges() {
     // Observe <head> (not only the current <title> node) so SPA replacements of the
-    // title element still get a prefix re-applied, without watching the whole document.
+    // title element still get a suffix re-applied, without watching the whole document.
     const root = document.head || document.documentElement;
     if (!root) return;
 
@@ -110,9 +110,9 @@
       queueMicrotask(() => {
         scheduled = false;
         // A route change may land here before popstate/hashchange (or without either),
-        // so re-evaluate the rules when the URL moved, then re-apply the prefix.
+        // so re-evaluate the rules when the URL moved, then re-apply the suffix.
         refreshIfUrlChanged();
-        applyPrefix();
+        applySuffix();
       });
     };
 
@@ -131,7 +131,7 @@
       // Reload full settings (normalize + migration) rather than patching keys.
       TTPSettings.loadSettings().then((next) => {
         settings = next;
-        refreshPrefix();
+        refreshSuffix();
       }).catch(() => {});
     });
   }
@@ -141,11 +141,11 @@
     if (!api || !api.runtime || !api.runtime.onMessage) return;
     api.runtime.onMessage.addListener((message) => {
       // Renaming a container does not touch storage, so the background script tells
-      // open tabs to re-read the name instead of leaving a stale prefix behind.
+      // open tabs to re-read the name instead of leaving a stale suffix behind.
       if (!message || message.type !== "containerChanged") return;
       sendMessage({ type: "getContainerName" }).then((name) => {
         containerName = name;
-        refreshPrefix();
+        refreshSuffix();
       }).catch(() => {});
     });
   }
@@ -160,7 +160,7 @@
     }
 
     // Always wire listeners so re-enable / template edits apply without a full reload.
-    refreshPrefix();
+    refreshSuffix();
     watchNavigationChanges();
     watchTitleChanges();
     watchStorageChanges();

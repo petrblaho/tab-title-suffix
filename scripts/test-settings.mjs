@@ -106,6 +106,38 @@ assert(TTPSettings.getSchemaVersion(futureRaw) === 3, "newer schema version is r
 assert(TTPSettings.getSchemaVersion({ enabled: true, format: "[{name}] " }) === 1, "missing schemaVersion is v1");
 assert(TTPSettings.getSchemaVersion({ schemaVersion: "2" }) === 1, "non-numeric schemaVersion is v1");
 
+// The suffix variant keeps the original observer/settings flow but appends the
+// generated container output after the page title.
+const contentPath = join(__dirname, "..", "src", "extension", "content.js");
+const contentDocument = { title: "Dashboard", head: {}, documentElement: {} };
+const contentSandbox = {
+  console,
+  document: contentDocument,
+  location: { href: "https://example.test/dashboard", hostname: "example.test" },
+  window: { addEventListener() {} },
+  browser: {
+    runtime: {
+      sendMessage: (message) => Promise.resolve(message.type === "getContainerName" ? "Work" : null),
+      onMessage: { addListener() {} },
+    },
+    storage: { onChanged: { addListener() {} } },
+  },
+  TTPSettings: {
+    loadSettings: () => Promise.resolve({
+      enabled: true,
+      containerRule: { enabled: true, template: "[{container}] " },
+      urlRulesEnabled: true,
+      urlRules: [],
+    }),
+    urlMatchesPattern: () => false,
+  },
+  MutationObserver: class { observe() {} },
+  queueMicrotask,
+};
+runInContext(readFileSync(contentPath, "utf8"), createContext(contentSandbox));
+await new Promise((resolve) => setImmediate(resolve));
+assert(contentDocument.title === "Dashboard[Work] ", "generated output is appended as a suffix");
+
 if (failed) {
   console.error(`\n${failed} assertion(s) failed`);
   process.exit(1);
