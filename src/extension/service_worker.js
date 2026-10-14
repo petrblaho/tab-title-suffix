@@ -131,7 +131,7 @@ function queryAllTabs() {
 }
 
 // Renaming a container never touches storage, so open tabs would keep the old name in
-// their prefix. Tell them to re-read it. No extra permission is needed: tabs.query works
+// their suffix. Tell them to re-read it. No extra permission is needed: tabs.query works
 // without the "tabs" permission for ids, and tabs.sendMessage rides on host permissions.
 async function broadcastContainerChanged() {
   if (!api || !api.tabs || !api.tabs.sendMessage) return;

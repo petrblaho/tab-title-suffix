@@ -45,8 +45,8 @@ function getPreview(match, template) {
   } catch (e) {
     domain = "example.com";
   }
-  const prefix = renderTemplate(template || "", { domain, container: "Work" });
-  return `${prefix}${msg("optionsPreviewTitle")}`;
+  const suffix = renderTemplate(template || "", { domain, container: "Work" });
+  return `${msg("optionsPreviewTitle")}${suffix}`;
 }
 
 function getValidationMessage(pattern, template) {
