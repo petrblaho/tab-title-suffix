@@ -52,7 +52,7 @@ function New-ExtensionPackage {
   Copy-Item -LiteralPath $manifestSource -Destination (Join-Path $workDir "manifest.json")
 
   $extension = if ($Target -eq "firefox") { "xpi" } else { "zip" }
-  $packagePath = Join-Path $outDirPath "tab-title-prefix-$Target-v$version.$extension"
+  $packagePath = Join-Path $outDirPath "tab-title-suffix-$Target-v$version.$extension"
   if (Test-Path $packagePath) {
     Remove-Item -LiteralPath $packagePath -Force
   }

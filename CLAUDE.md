@@ -2,11 +2,11 @@
 （言語・確認スタイル・出力フォーマット等）は各 AI ツールのグローバル設定へ。
 fresh public clone でも有効な内容に保つこと。 -->
 
-# Tab Title Prefix 開発ガイド
+# Tab Title Suffix 開発ガイド
 
 ## プロジェクト概要
 
-Firefox の Multi-Account Containers で複数アカウントを同時に開いた際、タブタイトルが同じで見分けがつかない問題を解決するブラウザ拡張。タブタイトルの先頭にコンテナ名（Phase 1・Firefox）や URL ルール別プレフィックス（Phase 2・Chrome 対応）を自動で差し込む。詳細は `docs/local/plan_mvp.md` を参照。
+Firefox の Multi-Account Containers で複数アカウントを同時に開いた際、タブタイトルが同じで見分けがつかない問題を解決するブラウザ拡張。タブタイトルの末尾にコンテナ名（Phase 1・Firefox）や URL ルール別サフィックス（Phase 2・Chrome 対応）を自動で差し込む。詳細は `docs/local/plan_mvp.md` を参照。
 
 ## やらないこと（スコープ外）
 
